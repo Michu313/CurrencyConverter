@@ -5,8 +5,42 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CurrencyConverter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="Przelicznik walut" Height="300" Width="550">
+    <StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="30,5,5,5">
+            <Label x:Name="labeCourseUsd" Content="USD=" Margin="10"/>
+            <Label x:Name="labeCourseEur" Content="EUR=" Margin="10"/>
+            <Label x:Name="labeCourseGbp" Content="GBP=" Margin="10"/>
+            <Label x:Name="labeCourseChf" Content="CHF=" Margin="10"/>
+            <Button x:Name="button1" Content="Historia kursów walut" Width="150" Height="30" FontSize="14" Click="Button_Statistic"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Label x:Name="label1" Content="Wprowadź liczbę do przeliczenia:" Margin="10"/>
+            <TextBox x:Name="textBox1" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="10"/>
+            <ComboBox x:Name="comboBox1" Width="120" Margin="10">
+                <ComboBoxItem Content="PLN" />
+                <ComboBoxItem Content="USD"/>
+                <ComboBoxItem Content="EUR"/>
+                <ComboBoxItem Content="GBP"/>
+                <ComboBoxItem Content="CHF"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10">
+            <Label x:Name="label2" Content="Wprowadź liczbę do przeliczenia:" Margin="10"/>
+            <TextBox x:Name="textBox2" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="10" />
+            <ComboBox x:Name="comboBox2" Width="120" Margin="10">
+                <ComboBoxItem Content="PLN"/>
+                <ComboBoxItem Content="USD"/>
+                <ComboBoxItem Content="EUR"/>
+                <ComboBoxItem Content="GBP"/>
+                <ComboBoxItem Content="CHF"/>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="399,10,10,10">
+            <Button x:Name="button" Content="Przelicz" Margin="10" Width="110" Height="30" FontSize="14" Click="Button_ClickConvert" />
+        </StackPanel>
+
+
+
+    </StackPanel>
 </Window>
