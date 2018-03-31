@@ -22,5 +22,6 @@ namespace CurrencyConverter
             float b = float.Parse(a , CultureInfo.InvariantCulture.NumberFormat);
             return b;
         }
+
     }
 }

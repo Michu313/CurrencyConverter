@@ -60,7 +60,9 @@ namespace CurrencyConverter
 
         private void Button_Statistic(object sender, RoutedEventArgs e)
         {
-            
+            StatisticCurrency statistic = new StatisticCurrency();
+            statistic.Show();
+            this.Close();
         }
     }
 }

@@ -32,29 +32,43 @@ namespace CurrencyConverter
             throw new InvalidOperationException();
         }
 
-        public static void GetCourse(string currently, ref string[] tab, ref string[] tabUSD)
+        public static void GetCourseDate(ref string[] tab)
         {
-            var wc = new WebClient();
-            var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/tables/a/?format=xml");
-            XmlDocument xd = new XmlDocument();
-            xd.LoadXml(course);
-            for(int i = 0;i<tab.Length;i++)
+            XmlTextReader reader = new XmlTextReader("http://api.nbp.pl/api/exchangerates/rates/a/usd/last/30/?format=xml");
+            int i = 29;
+            while (reader.Read())
             {
-            foreach (XmlNode item in xd.GetElementsByTagName("Rate"))
-            {
-                if (item.NodeType == XmlNodeType.Element)
+                if(reader.IsStartElement())
                 {
-                    XmlElement pp = (XmlElement)item;
-                    XmlElement w = (XmlElement)pp.GetElementsByTagName("EffectiveDate")[0];
-                    if (w.InnerText != tab[i])
+                    switch(reader.Name.ToString())
                     {
-                        tab[i]= Convert.ToString(pp.GetElementsByTagName("EffectiveDate")[0].InnerText);
-                        tabUSD[i]= Convert.ToString(pp.GetElementsByTagName("Mid")[0].InnerText);
+                        case "EffectiveDate":
+                        tab[i] = reader.ReadString();
+                        i--;
+                        break;
                     }
                 }
             }
+
+        }
+
+        public static void GetCourseStatistic(ref string[] tab, string CurrencyName)
+        {
+            XmlTextReader reader = new XmlTextReader("http://api.nbp.pl/api/exchangerates/rates/a/"+CurrencyName+"/last/30/?format=xml");
+            int i = 29;
+            while (reader.Read())
+            {
+                if (reader.IsStartElement())
+                {
+                    switch (reader.Name.ToString())
+                    {
+                        case "Mid":
+                            tab[i] = reader.ReadString();
+                            i--;
+                            break;
+                    }
+                }
             }
-            throw new InvalidOperationException();
         }
 
         public static float ConvertPlnToOthe(float course, float valueTextBox)
