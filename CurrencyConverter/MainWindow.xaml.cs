@@ -64,5 +64,7 @@ namespace CurrencyConverter
             statistic.Show();
             this.Close();
         }
+
+       
     }
 }

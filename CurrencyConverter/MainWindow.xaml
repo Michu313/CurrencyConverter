@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="Przelicznik walut" Height="300" Width="550">
     <StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="30,5,5,5">
-            <Label x:Name="labeCourseUsd" Content="USD=" Margin="10"/>
-            <Label x:Name="labeCourseEur" Content="EUR=" Margin="10"/>
-            <Label x:Name="labeCourseGbp" Content="GBP=" Margin="10"/>
-            <Label x:Name="labeCourseChf" Content="CHF=" Margin="10"/>
+        <StackPanel Orientation="Horizontal" Margin="10,5,5,5">
+            <Label x:Name="labeCourseUsd" Content="USD=" Margin="10" Width="70"/>
+            <Label x:Name="labeCourseEur" Content="EUR=" Margin="10" Width="70"/>
+            <Label x:Name="labeCourseGbp" Content="GBP=" Margin="10" Width="70"/>
+            <Label x:Name="labeCourseChf" Content="CHF=" Margin="10" Width="70"/>
             <Button x:Name="button1" Content="Historia kursów walut" Width="150" Height="30" FontSize="14" Click="Button_Statistic"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <Label x:Name="label1" Content="Wprowadź liczbę do przeliczenia:" Margin="10"/>
-            <TextBox x:Name="textBox1" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="10"/>
+        <StackPanel Orientation="Horizontal" >
+            <Label x:Name="label1" Content="Wprowadź kwotę do przeliczenia:" Margin="10" Width="200"/>
+            <TextBox x:Name="textBox1" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="10" />
             <ComboBox x:Name="comboBox1" Width="120" Margin="10">
                 <ComboBoxItem Content="PLN" />
                 <ComboBoxItem Content="USD"/>
@@ -25,8 +25,8 @@
                 <ComboBoxItem Content="CHF"/>
             </ComboBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="10">
-            <Label x:Name="label2" Content="Wprowadź liczbę do przeliczenia:" Margin="10"/>
+        <StackPanel Orientation="Horizontal" >
+            <Label x:Name="label2" Content="Kwota po przeliczeniu:" Margin="10" Width="200"/>
             <TextBox x:Name="textBox2" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="10" />
             <ComboBox x:Name="comboBox2" Width="120" Margin="10">
                 <ComboBoxItem Content="PLN"/>
@@ -36,7 +36,7 @@
                 <ComboBoxItem Content="CHF"/>
             </ComboBox>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="399,10,10,10">
+        <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
             <Button x:Name="button" Content="Przelicz" Margin="10" Width="110" Height="30" FontSize="14" Click="Button_ClickConvert" />
         </StackPanel>
 

@@ -21,10 +21,9 @@ namespace CurrencyConverter
     {
         List<Currency> CurrenclyList = new List<Currency>();
         string[] tabDate = new string[30];
-        string[] tabUsd = new string[30];
-        string[] tabEur = new string[30];
-        string[] tabGbp = new string[30];
-        string[] tabChF = new string[30];
+        float[,] Currency = new float[30,4];
+        string[,] Image = new string[30, 4];
+         
         
         public StatisticCurrency()
         {
@@ -44,13 +43,20 @@ namespace CurrencyConverter
         {
             List<string> test = new List<string>();
             Course.GetCourseDate(ref tabDate);
-            Course.GetCourseStatistic(ref tabUsd, "usd");
-            Course.GetCourseStatistic(ref tabEur, "eur");
-            Course.GetCourseStatistic(ref tabGbp, "gbp");
-            Course.GetCourseStatistic(ref tabChF, "chf");
+            Course.GetCourseStatistic(ref Currency, "usd");
+            Course.GetCourseStatistic(ref Currency, "eur");
+            Course.GetCourseStatistic(ref Currency, "gbp");
+            Course.GetCourseStatistic(ref Currency, "chf");
+            Helpes.SelectImage( Currency, ref Image, 0);
+            Helpes.SelectImage( Currency, ref Image, 1);
+            Helpes.SelectImage( Currency, ref Image, 2);
+            Helpes.SelectImage( Currency, ref Image, 3);
+
+
+
             for (int i = 0; i < tabDate.Length; i++)
             {
-                CurrenclyList.Add(new Currency(tabDate[i], tabUsd[i], tabEur[i], tabGbp[i], tabChF[i]));
+                CurrenclyList.Add(new Currency(tabDate[i], Currency[i,0], Image[i,0], Currency[i, 1], Image[i, 1], Currency[i, 2], Image[i, 2], Currency[i, 3], Image[i, 3]));
             }
 
             listView.ItemsSource = CurrenclyList;

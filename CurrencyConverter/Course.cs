@@ -11,6 +11,11 @@ namespace CurrencyConverter
     class Course
     {
         public Course() { }
+        /// <summary>
+        /// get aktually course currency
+        /// </summary>
+        /// <param name="currently">short name of the currency</param>
+        /// <returns></returns>
         public static string GetCourse(string currently)
         {
             var wc = new WebClient();
@@ -52,8 +57,18 @@ namespace CurrencyConverter
 
         }
 
-        public static void GetCourseStatistic(ref string[] tab, string CurrencyName)
+        public static void GetCourseStatistic(ref float[,] tab, string CurrencyName)
         {
+            int a = 0;
+            if (CurrencyName == "usd")
+                a = 0;
+            if (CurrencyName == "eur")
+                a = 1;
+            if (CurrencyName == "gbp")
+                a = 2;
+            if (CurrencyName == "chf")
+                a = 3;
+
             XmlTextReader reader = new XmlTextReader("http://api.nbp.pl/api/exchangerates/rates/a/"+CurrencyName+"/last/30/?format=xml");
             int i = 29;
             while (reader.Read())
@@ -63,14 +78,14 @@ namespace CurrencyConverter
                     switch (reader.Name.ToString())
                     {
                         case "Mid":
-                            tab[i] = reader.ReadString();
+                            tab[i,a] = Helpes.StringToFloat(reader.ReadString());
                             i--;
                             break;
                     }
                 }
             }
         }
-
+        
         public static float ConvertPlnToOthe(float course, float valueTextBox)
         {
             course = 1 / course;

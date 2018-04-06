@@ -5,17 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CurrencyConverter"
         mc:Ignorable="d"
-        Title="StatisticCurrency" Height="450" Width="600">
+        Title="Statystyki walut" Height="450" Width="640">
     <Grid>
         <Button x:Name="backButton" Content="Wstecz" HorizontalAlignment="Left" Margin="21,377,0,0" VerticalAlignment="Top" Width="75" Click="BackButton_Click"/>
-        <ListView x:Name="listView" Margin="26,10,49,63" MinWidth="520" MaxWidth="560">
+        <ListView x:Name="listView" Margin="26,10,49,63" MinWidth="520" Width="540" MaxWidth="540" >
             <ListView.View>
-                <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Data" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding UsdCourse}" Header="Kurs USD" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding EurCourse}" Header="Kurs EUR" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding GbpCourse}" Header="Kurs GBP" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding ChfCourse}" Header="Kurs CHF" Width="100"></GridViewColumn>
+                <GridView AllowsColumnReorder="False">
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="GridViewColumnHeader">
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridView.Columns>
+                        <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Data" Width="70"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding UsdCourse}" Header="Kurs USD" Width="70"></GridViewColumn>
+                        <GridViewColumn Header="Zm."  Width="40">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding UsdCourseImage}" Width="30" Height="20" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding EurCourse}" Header="Kurs EUR" Width="70"></GridViewColumn>
+                        <GridViewColumn Header="Zm."  Width="40">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding EurCourseImage}" Width="30" Height="20" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding GbpCourse}" Header="Kurs GBP" Width="70"></GridViewColumn>
+                        <GridViewColumn Header="Zm."  Width="40">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding GbpCourseImage}" Width="30" Height="20" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding ChfCourse}" Header="Kurs CHF" Width="70"  ></GridViewColumn>
+                        <GridViewColumn Header="Zm."  Width="40">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding ChfCourseImage}" Width="30" Height="20" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
                 </GridView>
             </ListView.View>
         </ListView>
