@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CurrencyConverter
 {
-    class Currency
+    public class Currency
     {
         public string Date { get; private set; }
         public float UsdCourse { get; private set; }

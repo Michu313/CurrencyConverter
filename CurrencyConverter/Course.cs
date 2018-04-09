@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace CurrencyConverter
 {
-    class Course
+    public class Course
     {
         public Course() { }
         /// <summary>
@@ -39,22 +39,25 @@ namespace CurrencyConverter
 
         public static void GetCourseDate(ref string[] tab)
         {
-            XmlTextReader reader = new XmlTextReader("http://api.nbp.pl/api/exchangerates/rates/a/usd/last/30/?format=xml");
+            var wc = new WebClient();
+            var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/rates/a/usd/last/30/?format=xml");
+            XmlDocument xd = new XmlDocument();
+            xd.LoadXml(course);
+            Course.GetCourseDateLoop(ref tab, xd);
+        }
+
+        private static void GetCourseDateLoop(ref string[] tab, XmlDocument a)
+        {
             int i = 29;
-            while (reader.Read())
+            foreach (XmlNode item in a.GetElementsByTagName("Rate"))
             {
-                if(reader.IsStartElement())
+                if (item.NodeType == XmlNodeType.Element)
                 {
-                    switch(reader.Name.ToString())
-                    {
-                        case "EffectiveDate":
-                        tab[i] = reader.ReadString();
-                        i--;
-                        break;
-                    }
+                    XmlElement pp = (XmlElement)item;
+                    tab[i]=Convert.ToString(pp.GetElementsByTagName("EffectiveDate")[0].InnerText);
+                    i--;
                 }
             }
-
         }
 
         public static void GetCourseStatistic(ref float[,] tab, string CurrencyName)
@@ -69,23 +72,28 @@ namespace CurrencyConverter
             if (CurrencyName == "chf")
                 a = 3;
 
-            XmlTextReader reader = new XmlTextReader("http://api.nbp.pl/api/exchangerates/rates/a/"+CurrencyName+"/last/30/?format=xml");
+            var wc = new WebClient();
+            var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/rates/a/" + CurrencyName + "/last/30/?format=xml");
+            XmlDocument xd = new XmlDocument();
+            xd.LoadXml(course);
+            Course.GetCourseStatisticLooop(ref tab, xd, a);
+        }
+
+        private static void GetCourseStatisticLooop(ref float[,] tab, XmlDocument xml, int a)
+        {
             int i = 29;
-            while (reader.Read())
+            foreach (XmlNode item in xml.GetElementsByTagName("Rate"))
             {
-                if (reader.IsStartElement())
+                if (item.NodeType == XmlNodeType.Element)
                 {
-                    switch (reader.Name.ToString())
-                    {
-                        case "Mid":
-                            tab[i,a] = Helpes.StringToFloat(reader.ReadString());
-                            i--;
-                            break;
-                    }
+                    XmlElement pp = (XmlElement)item;
+                    tab[i,a] = Helper.StringToFloat(Convert.ToString(pp.GetElementsByTagName("Mid")[0].InnerText));
+                    i--;
                 }
             }
         }
-        
+
+
         public static float ConvertPlnToOthe(float course, float valueTextBox)
         {
             course = 1 / course;

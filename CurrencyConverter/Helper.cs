@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CurrencyConverter
 {
-    class Helpes
+    public class Helper
     {
         public static float Round(float a)
         { 

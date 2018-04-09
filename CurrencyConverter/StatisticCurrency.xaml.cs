@@ -47,10 +47,10 @@ namespace CurrencyConverter
             Course.GetCourseStatistic(ref Currency, "eur");
             Course.GetCourseStatistic(ref Currency, "gbp");
             Course.GetCourseStatistic(ref Currency, "chf");
-            Helpes.SelectImage( Currency, ref Image, 0);
-            Helpes.SelectImage( Currency, ref Image, 1);
-            Helpes.SelectImage( Currency, ref Image, 2);
-            Helpes.SelectImage( Currency, ref Image, 3);
+            Helper.SelectImage( Currency, ref Image, 0);
+            Helper.SelectImage( Currency, ref Image, 1);
+            Helper.SelectImage( Currency, ref Image, 2);
+            Helper.SelectImage( Currency, ref Image, 3);
 
 
 

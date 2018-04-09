@@ -25,10 +25,10 @@ namespace CurrencyConverter
         {
             InitializeComponent();
 
-            labeCourseUsd.Content = labeCourseUsd.Content + "" + Helpes.Round(Helpes.StringToFloat(Course.GetCourse("USD")));
-            labeCourseEur.Content = labeCourseEur.Content + "" + Helpes.Round(Helpes.StringToFloat(Course.GetCourse("EUR")));
-            labeCourseGbp.Content = labeCourseGbp.Content + "" + Helpes.Round(Helpes.StringToFloat(Course.GetCourse("GBP")));
-            labeCourseChf.Content = labeCourseChf.Content + "" + Helpes.Round(Helpes.StringToFloat(Course.GetCourse("CHF")));
+            labeCourseUsd.Content = labeCourseUsd.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("USD")));
+            labeCourseEur.Content = labeCourseEur.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("EUR")));
+            labeCourseGbp.Content = labeCourseGbp.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("GBP")));
+            labeCourseChf.Content = labeCourseChf.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("CHF")));
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 1;
             textBox1.Focus();
@@ -43,17 +43,17 @@ namespace CurrencyConverter
             textBox2.Text = "";
             if (cb1 == "PLN")
             {
-                string a = "" + Helpes.Round(Course.ConvertPlnToOthe(Helpes.StringToFloat(Course.GetCourse(cb2)), b));
+                string a = "" + Helper.Round(Course.ConvertPlnToOthe(Helper.StringToFloat(Course.GetCourse(cb2)), b));
                 textBox2.AppendText(a);
             }
             else if (cb2 == "PLN")
             {
-                string a = "" + Helpes.Round(Course.ConvertOthersToPln(Helpes.StringToFloat(Course.GetCourse(cb1)), b));
+                string a = "" + Helper.Round(Course.ConvertOthersToPln(Helper.StringToFloat(Course.GetCourse(cb1)), b));
                 textBox2.AppendText(a);
             }
             else
             {
-                string a = "" + Helpes.Round(Course.ConvertOtherstoOthers(Helpes.StringToFloat(Course.GetCourse(cb1)), Helpes.StringToFloat(Course.GetCourse(cb2)), b));
+                string a = "" + Helper.Round(Course.ConvertOtherstoOthers(Helper.StringToFloat(Course.GetCourse(cb1)), Helper.StringToFloat(Course.GetCourse(cb2)), b));
                 textBox2.AppendText(a);
             }
         }

@@ -67,7 +67,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Course.cs" />
-    <Compile Include="Helpes.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
