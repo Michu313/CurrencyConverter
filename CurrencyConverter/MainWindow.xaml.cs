@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,15 +25,16 @@ namespace CurrencyConverter
         public MainWindow()
         {
             InitializeComponent();
-
             labeCourseUsd.Content = labeCourseUsd.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("USD")));
             labeCourseEur.Content = labeCourseEur.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("EUR")));
             labeCourseGbp.Content = labeCourseGbp.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("GBP")));
             labeCourseChf.Content = labeCourseChf.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("CHF")));
+            Helper.AddItemToList(ref comboBox1);
+            Helper.AddItemToList(ref comboBox2);
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 1;
             textBox1.Focus();
-            textBox2.IsReadOnly = true;
+            textBox2.IsReadOnly = true; 
         }
 
         private void Button_ClickConvert(object sender, RoutedEventArgs e)
@@ -65,6 +67,10 @@ namespace CurrencyConverter
             this.Close();
         }
 
-       
+        //private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        //{
+        //    Regex regex = new Regex("[^0-9]+");
+        //    e.Handled = regex.IsMatch(e.Text);
+        //}
     }
 }

@@ -29,7 +29,6 @@ namespace CurrencyConverter
         {
             InitializeComponent();
             InitializeList();
-            
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
@@ -43,16 +42,16 @@ namespace CurrencyConverter
         {
             List<string> test = new List<string>();
             Course.GetCourseDate(ref tabDate);
+
             Course.GetCourseStatistic(ref Currency, "usd");
             Course.GetCourseStatistic(ref Currency, "eur");
             Course.GetCourseStatistic(ref Currency, "gbp");
             Course.GetCourseStatistic(ref Currency, "chf");
+
             Helper.SelectImage( Currency, ref Image, 0);
             Helper.SelectImage( Currency, ref Image, 1);
             Helper.SelectImage( Currency, ref Image, 2);
             Helper.SelectImage( Currency, ref Image, 3);
-
-
 
             for (int i = 0; i < tabDate.Length; i++)
             {
@@ -61,5 +60,7 @@ namespace CurrencyConverter
 
             listView.ItemsSource = CurrenclyList;
         }
+
+        
     }
 }

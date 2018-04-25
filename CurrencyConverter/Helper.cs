@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace CurrencyConverter
 {
@@ -52,6 +53,16 @@ namespace CurrencyConverter
                 }
             }
             
+        }
+
+        public static void AddItemToList(ref ComboBox comboBox)
+        {
+            string[] tab = Course.GetAllNameCurrent();
+            comboBox.Items.Add("PLN");
+            for (int i = 0; i < tab.Length; i++)
+            {
+                comboBox.Items.Add(tab[i]);
+            }
         }
     }
 }

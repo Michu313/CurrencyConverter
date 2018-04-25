@@ -17,24 +17,12 @@
         <StackPanel Orientation="Horizontal" >
             <Label x:Name="label1" Content="Wprowadź kwotę do przeliczenia:" Margin="10" Width="200"/>
             <TextBox x:Name="textBox1" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="10" />
-            <ComboBox x:Name="comboBox1" Width="120" Margin="10">
-                <ComboBoxItem Content="PLN" />
-                <ComboBoxItem Content="USD"/>
-                <ComboBoxItem Content="EUR"/>
-                <ComboBoxItem Content="GBP"/>
-                <ComboBoxItem Content="CHF"/>
-            </ComboBox>
+            <ComboBox x:Name="comboBox1" Width="120" Margin="10" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" >
             <Label x:Name="label2" Content="Kwota po przeliczeniu:" Margin="10" Width="200"/>
             <TextBox x:Name="textBox2" Height="23" TextWrapping="Wrap" Text="" Width="120" Margin="10" />
-            <ComboBox x:Name="comboBox2" Width="120" Margin="10">
-                <ComboBoxItem Content="PLN"/>
-                <ComboBoxItem Content="USD"/>
-                <ComboBoxItem Content="EUR"/>
-                <ComboBoxItem Content="GBP"/>
-                <ComboBoxItem Content="CHF"/>
-            </ComboBox>
+            <ComboBox x:Name="comboBox2" Width="120" Margin="10" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
             <Button x:Name="button" Content="Przelicz" Margin="10" Width="110" Height="30" FontSize="14" Click="Button_ClickConvert" />

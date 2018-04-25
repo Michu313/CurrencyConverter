@@ -5,10 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CurrencyConverter"
         mc:Ignorable="d"
-        Title="Statystyki walut" Height="450" Width="640">
+        Title="Statystyki walut" Height="450" Width="750" >
     <Grid>
-        <Button x:Name="backButton" Content="Wstecz" HorizontalAlignment="Left" Margin="21,377,0,0" VerticalAlignment="Top" Width="75" Click="BackButton_Click"/>
-        <ListView x:Name="listView" Margin="26,10,49,63" MinWidth="520" Width="540" MaxWidth="540" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="384*"/>
+            <RowDefinition Height="35*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="550"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="1">
+            <ComboBox x:Name="comboBoxCurrency1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="120" Margin="90,5,10,5"/>
+            <TextBlock x:Name="textBlock" HorizontalAlignment="Left"  Grid.RowSpan="2" TextWrapping="Wrap" Text="Waluta" VerticalAlignment="Top" Margin="20,5,5,0"/>
+            <ComboBox x:Name="comboBoxCurrency2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="35,5,5,5"/>
+        </StackPanel>
+        <ListView x:Name="listView" Margin="10" MinWidth="540" MaxWidth="540" Grid.Row="1" Grid.Column="1">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridView.ColumnHeaderContainerStyle>
@@ -17,36 +31,22 @@
                         </Style>
                     </GridView.ColumnHeaderContainerStyle>
                     <GridView.Columns>
-                        <GridViewColumn DisplayMemberBinding="{Binding Date}" Header="Data" Width="70"></GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding UsdCourse}" Header="Kurs USD" Width="70"></GridViewColumn>
                         <GridViewColumn Header="Zm."  Width="40">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding UsdCourseImage}" Width="30" Height="20" />
+                                    <Image Source="{Binding CourseImage1}" Width="30" Height="20" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding EurCourse}" Header="Kurs EUR" Width="70"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Variable1}" Header="Zmiana" Width="80"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Value1}" Header="Cena" Width="80"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Data}" Header="Data" Width="100"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Value2}" Header="Cena" Width="80"></GridViewColumn>
+                        <GridViewColumn DisplayMemberBinding="{Binding Variable2}" Header="Zmiana" Width="80"></GridViewColumn>
                         <GridViewColumn Header="Zm."  Width="40">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding EurCourseImage}" Width="30" Height="20" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding GbpCourse}" Header="Kurs GBP" Width="70"></GridViewColumn>
-                        <GridViewColumn Header="Zm."  Width="40">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding GbpCourseImage}" Width="30" Height="20" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn DisplayMemberBinding="{Binding ChfCourse}" Header="Kurs CHF" Width="70"  ></GridViewColumn>
-                        <GridViewColumn Header="Zm."  Width="40">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="{Binding ChfCourseImage}" Width="30" Height="20" />
+                                    <Image Source="{Binding CourseImage2}" Width="30" Height="20" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -54,6 +54,10 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" >
+            <Button x:Name="backButton" Content="Wstecz" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="BackButton_Click" Margin="5"/>
+        </StackPanel>
+        
 
     </Grid>
 </Window>

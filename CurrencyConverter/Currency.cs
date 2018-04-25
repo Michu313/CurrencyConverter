@@ -8,27 +8,23 @@ namespace CurrencyConverter
 {
     public class Currency
     {
-        public string Date { get; private set; }
-        public float UsdCourse { get; private set; }
-        public string UsdCourseImage { get; private set; }
-        public float EurCourse { get; private set; }
-        public string EurCourseImage { get; private set; }
-        public float GbpCourse { get; private set; }
-        public string GbpCourseImage { get; private set; }
-        public float ChfCourse { get; private set; }
-        public string ChfCourseImage { get; private set; }
+        public string CourseImage1 { get; private set; }
+        public float Variable1 { get; private set; }
+        public float Value1 { get; private set; }
+        public string Data { get; private set; }
+        public float Value2 { get; private set; }
+        public float Variable2 { get; private set; }
+        public string CourseImage2 { get; private set; }
 
-        public Currency(string date, float usdCourse, string usdCourseImage, float eurCourse, string eurCourseImage, float gbpCourse, string gbpCourseImage, float chfCourse, string chfCourseImage)
+        public Currency(string courseImage1, float variable1, float value1, string date, float value2, float variable2, string courseImage2)
         {
-            this.Date = date;
-            this.UsdCourse = usdCourse;
-            this.UsdCourseImage = usdCourseImage;
-            this.EurCourse = eurCourse;
-            this.EurCourseImage = eurCourseImage;
-            this.GbpCourse = gbpCourse;
-            this.GbpCourseImage = gbpCourseImage;
-            this.ChfCourse = chfCourse;
-            this.ChfCourseImage = chfCourseImage;
+            this.CourseImage1 = courseImage1;
+            this.Variable1 = variable1;
+            this.Value1 = value1;
+            this.Data = date;
+            this.Value2 = value2;
+            this.Variable2 = variable2;
+            this.CourseImage2 = courseImage2;
         }
     }
 }
