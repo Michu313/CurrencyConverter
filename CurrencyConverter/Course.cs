@@ -37,6 +37,7 @@ namespace CurrencyConverter
             throw new InvalidOperationException();
         }
 
+        #region get all currency names
         private static int GetIloscWalut()
         {
             int i = 0;
@@ -75,7 +76,9 @@ namespace CurrencyConverter
             }
             return tab;
         }
+        #endregion
 
+        #region get date from last 30 day 
         public static void GetCourseDate(ref string[] tab)
         {
             var wc = new WebClient();
@@ -98,32 +101,19 @@ namespace CurrencyConverter
                 }
             }
         }
+        #endregion
 
-        private static int NameCurrent(string a)
+        #region get statistic currency from last 30 day 
+        public static void GetCourseStatistic(ref float[] tab, string CurrencyName)
         {
-            int tmp = 0;
-            if (a == "usd")
-                tmp = 0;
-            if (a == "eur")
-                tmp = 1;
-            if (a == "gbp")
-                tmp = 2;
-            if (a == "chf")
-                tmp = 3;
-            return tmp;
-        }
-
-        public static void GetCourseStatistic(ref float[,] tab, string CurrencyName)
-        {
-            int a = Course.NameCurrent(CurrencyName);
             var wc = new WebClient();
-            var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/rates/a/" + CurrencyName + "/last/30/?format=xml");
+            var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/rates/a/" + CurrencyName.ToLower() + "/last/30/?format=xml");
             XmlDocument xd = new XmlDocument();
             xd.LoadXml(course);
-            Course.GetCourseStatisticLooop(ref tab, xd, a);
+            Course.GetCourseStatisticLooop(ref tab, xd);
         }
-
-        private static void GetCourseStatisticLooop(ref float[,] tab, XmlDocument xml, int a)
+        
+        private static void GetCourseStatisticLooop(ref float[] tab, XmlDocument xml)
         {
             int i = 29;
             foreach (XmlNode item in xml.GetElementsByTagName("Rate"))
@@ -131,13 +121,13 @@ namespace CurrencyConverter
                 if (item.NodeType == XmlNodeType.Element)
                 {
                     XmlElement pp = (XmlElement)item;
-                    tab[i,a] = Helper.StringToFloat(Convert.ToString(pp.GetElementsByTagName("Mid")[0].InnerText));
+                    tab[i] = Helper.StringToFloat(Convert.ToString(pp.GetElementsByTagName("Mid")[0].InnerText));
                     i--;
                 }
             }
         }
-        
-        
+        #endregion
+
 
 
         public static float ConvertPlnToOthe(float course, float valueTextBox)

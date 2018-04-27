@@ -29,8 +29,8 @@ namespace CurrencyConverter
             labeCourseEur.Content = labeCourseEur.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("EUR")));
             labeCourseGbp.Content = labeCourseGbp.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("GBP")));
             labeCourseChf.Content = labeCourseChf.Content + "" + Helper.Round(Helper.StringToFloat(Course.GetCourse("CHF")));
-            Helper.AddItemToList(ref comboBox1);
-            Helper.AddItemToList(ref comboBox2);
+            Helper.AddItemToComboBoxList(ref comboBox1, true);
+            Helper.AddItemToComboBoxList(ref comboBox2, true);
             comboBox1.SelectedIndex = 0;
             comboBox2.SelectedIndex = 1;
             textBox1.Focus();

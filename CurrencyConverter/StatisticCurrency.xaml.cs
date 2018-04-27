@@ -21,13 +21,19 @@ namespace CurrencyConverter
     {
         List<Currency> CurrenclyList = new List<Currency>();
         string[] tabDate = new string[30];
-        float[,] Currency = new float[30,4];
-        string[,] Image = new string[30, 4];
-         
+        float[] Currency1 = new float[30];
+        float[] Currency2 = new float[30];
+        string[] Image1 = new string[30];
+        string[] Image2 = new string[30];
         
+
         public StatisticCurrency()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            Helper.AddItemToComboBoxList(ref comboBoxCurrency1 ,false);
+            Helper.AddItemToComboBoxList(ref comboBoxCurrency2, false);
+            comboBoxCurrency1.SelectedIndex = 0;
+            comboBoxCurrency2.SelectedIndex = 1;
             InitializeList();
         }
 
@@ -40,27 +46,34 @@ namespace CurrencyConverter
 
         public void InitializeList()
         {
+            listView.Items.Clear();
             List<string> test = new List<string>();
             Course.GetCourseDate(ref tabDate);
-
-            Course.GetCourseStatistic(ref Currency, "usd");
-            Course.GetCourseStatistic(ref Currency, "eur");
-            Course.GetCourseStatistic(ref Currency, "gbp");
-            Course.GetCourseStatistic(ref Currency, "chf");
-
-            Helper.SelectImage( Currency, ref Image, 0);
-            Helper.SelectImage( Currency, ref Image, 1);
-            Helper.SelectImage( Currency, ref Image, 2);
-            Helper.SelectImage( Currency, ref Image, 3);
+            Course.GetCourseStatistic(ref Currency1, comboBoxCurrency1.Text.ToString());
+            Course.GetCourseStatistic(ref Currency2, comboBoxCurrency2.Text.ToString());
+            Helper.SelectImage(Currency1, ref Image1);
+            Helper.SelectImage(Currency2, ref Image2);
+            
 
             for (int i = 0; i < tabDate.Length; i++)
             {
-                CurrenclyList.Add(new Currency(tabDate[i], Currency[i,0], Image[i,0], Currency[i, 1], Image[i, 1], Currency[i, 2], Image[i, 2], Currency[i, 3], Image[i, 3]));
+                listView.Items.Add(new Currency(Image1[i], 0, Currency1[i], tabDate[i], Currency2[i], 0, Image2[i]));
             }
-
-            listView.ItemsSource = CurrenclyList;
         }
 
-        
+        private void RefreshList(object sender, RoutedEventArgs e)
+        {
+            listView.Items.Clear();
+            Course.GetCourseDate(ref tabDate);
+            Course.GetCourseStatistic(ref Currency1, comboBoxCurrency1.Text.ToString());
+            Course.GetCourseStatistic(ref Currency2, comboBoxCurrency2.Text.ToString());
+            Helper.SelectImage(Currency1, ref Image1);
+            Helper.SelectImage(Currency2, ref Image2);
+            
+            for (int i = 0; i < tabDate.Length; i++)
+            {
+                listView.Items.Add(new Currency(Image1[i], 0, Currency1[i], tabDate[i], Currency2[i], 0, Image2[i]));
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@
             <TextBlock x:Name="textBlock" HorizontalAlignment="Left"  Grid.RowSpan="2" TextWrapping="Wrap" Text="Waluta" VerticalAlignment="Top" Margin="20,5,5,0"/>
             <ComboBox x:Name="comboBoxCurrency2" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Margin="35,5,5,5"/>
         </StackPanel>
-        <ListView x:Name="listView" Margin="10" MinWidth="540" MaxWidth="540" Grid.Row="1" Grid.Column="1">
+        <ListView x:Name="listView" Margin="10" MinWidth="540" MaxWidth="540" Grid.Row="1" Grid.Column="1" >
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridView.ColumnHeaderContainerStyle>
@@ -57,7 +57,8 @@
         <StackPanel Grid.Row="2" Orientation="Horizontal" >
             <Button x:Name="backButton" Content="Wstecz" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Click="BackButton_Click" Margin="5"/>
         </StackPanel>
-        
+        <Button x:Name="button" Content="Odśwież" Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="RefreshList"/>
+
 
     </Grid>
 </Window>

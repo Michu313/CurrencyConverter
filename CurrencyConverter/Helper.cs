@@ -24,41 +24,41 @@ namespace CurrencyConverter
             return b;
         }
         /// <summary>
-        /// 
+        /// Select image
         /// </summary>
-        /// <param name="tab">Currency</param>
-        /// <param name="tab2">ImageCurse</param>
-        /// <param name="a"></param>
-        public static void SelectImage( float[,] tab, ref string[,] tab2, int a)
+        /// <param name="tab">Tab currency</param>
+        /// <param name="tab2">Tab image</param>
+        public static void SelectImage( float[] tab, ref string[] tab2)
         {
-            
-            int tmp = (int)(tab[29,a]* 10000);
+            int tmp = (int)(tab[29]* 10000);
             for (int i = 29; i >= 0; i--)
             {
-                int tmp1 = (int)(tab[i,a] * 10000);
+                int tmp1 = (int)(tab[i] * 10000);
                 if (tmp1 == tmp)
                 {
-                    tab2[i,a] = "/Image/image2.png";
-                    tmp = (int)(tab[i,a] * 10000);
+                    tab2[i] = "/Image/image2.png";
+                    tmp = (int)(tab[i] * 10000);
                 }
                 if (tmp1 > tmp)
                 {
-                    tab2[i,a] = "/Image/image1.png";
-                    tmp = (int)(tab[i,a] * 10000);
+                    tab2[i] = "/Image/image1.png";
+                    tmp = (int)(tab[i] * 10000);
                 }
                 if (tmp1 < tmp)
                 {
-                    tab2[i,a] = "/Image/image3.png";
-                    tmp = (int)(tab[i,a] * 10000);
+                    tab2[i] = "/Image/image3.png";
+                    tmp = (int)(tab[i] * 10000);
                 }
             }
-            
         }
 
-        public static void AddItemToList(ref ComboBox comboBox)
+        public static void AddItemToComboBoxList(ref ComboBox comboBox, bool addPln)
         {
             string[] tab = Course.GetAllNameCurrent();
+            if (addPln==true)
+            {
             comboBox.Items.Add("PLN");
+            }
             for (int i = 0; i < tab.Length; i++)
             {
                 comboBox.Items.Add(tab[i]);
