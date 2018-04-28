@@ -23,6 +23,8 @@ namespace CurrencyConverter
         string[] tabDate = new string[30];
         float[] Currency1 = new float[30];
         float[] Currency2 = new float[30];
+        float[] ChangeTab1 = new float[30];
+        float[] ChangeTab2 = new float[30];
         string[] Image1 = new string[30];
         string[] Image2 = new string[30];
         
@@ -37,7 +39,7 @@ namespace CurrencyConverter
             InitializeList();
         }
 
-        private void BackButton_Click(object sender, RoutedEventArgs e)
+        private void BackButton(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
@@ -49,31 +51,24 @@ namespace CurrencyConverter
             listView.Items.Clear();
             List<string> test = new List<string>();
             Course.GetCourseDate(ref tabDate);
-            Course.GetCourseStatistic(ref Currency1, comboBoxCurrency1.Text.ToString());
-            Course.GetCourseStatistic(ref Currency2, comboBoxCurrency2.Text.ToString());
+            Course.GetCourseStatistic(ref Currency1, comboBoxCurrency1.Text.ToString(), tabDate);
+            Course.GetCourseStatistic(ref Currency2, comboBoxCurrency2.Text.ToString(), tabDate);
             Helper.SelectImage(Currency1, ref Image1);
             Helper.SelectImage(Currency2, ref Image2);
-            
+            DetailedStatistic.ChangeCurrencyPrice(Currency1, ref ChangeTab1);
+            DetailedStatistic.ChangeCurrencyPrice(Currency2, ref ChangeTab2);
+            DetailedStatistic.FillTextBlock(ref textBlockCurrency11, ref textBlockCurrency12, ref textBlockCurrency13, ref textBlockCurrency14, ref textBlockCurrency15, Currency1, ChangeTab1);
+            DetailedStatistic.FillTextBlock(ref textBlockCurrency21, ref textBlockCurrency22, ref textBlockCurrency23, ref textBlockCurrency24, ref textBlockCurrency25, Currency2, ChangeTab2);
 
-            for (int i = 0; i < tabDate.Length; i++)
+            for (int i = 0; i < 30; i++)
             {
-                listView.Items.Add(new Currency(Image1[i], 0, Currency1[i], tabDate[i], Currency2[i], 0, Image2[i]));
+                listView.Items.Add(new Currency(Image1[i], ChangeTab1[i], Helper.RoundFloat(Currency1[i],4), tabDate[i],Helper.RoundFloat(Currency2[i],4), ChangeTab2[i], Image2[i]));
             }
         }
 
         private void RefreshList(object sender, RoutedEventArgs e)
         {
-            listView.Items.Clear();
-            Course.GetCourseDate(ref tabDate);
-            Course.GetCourseStatistic(ref Currency1, comboBoxCurrency1.Text.ToString());
-            Course.GetCourseStatistic(ref Currency2, comboBoxCurrency2.Text.ToString());
-            Helper.SelectImage(Currency1, ref Image1);
-            Helper.SelectImage(Currency2, ref Image2);
-            
-            for (int i = 0; i < tabDate.Length; i++)
-            {
-                listView.Items.Add(new Currency(Image1[i], 0, Currency1[i], tabDate[i], Currency2[i], 0, Image2[i]));
-            }
+            InitializeList();
         }
     }
 }

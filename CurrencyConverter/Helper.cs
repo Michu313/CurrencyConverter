@@ -10,11 +10,16 @@ namespace CurrencyConverter
 {
     public class Helper
     {
-        public static float Round(float a)
-        { 
-            int tmp = (int)(a*100);
+        public static float RoundFloat(float a, int q)
+        {
+            int w=1;
+            for (int i = 0; i < q; i++)
+            {
+                w = w * 10;
+            }
+            int tmp = (int)(a*w);
             float b = tmp;
-            b = b / 100;
+            b = b / w;
             return b;
         }
 
@@ -23,6 +28,34 @@ namespace CurrencyConverter
             float b = float.Parse(a , CultureInfo.InvariantCulture.NumberFormat);
             return b;
         }
+
+        public static string FormatDate(string date)
+        {
+            int q = 0;
+            string a1 = "", a2 = "", a3 = "";
+            for (int i = 0; i < date.Length; i++)
+            {
+                if (date[i] == '-')
+                {
+                    q++;
+                    i++;
+                }
+                if (q == 0)
+                {
+                    a1 += date[i];
+                }
+                if (q == 1)
+                {
+                    a2 += date[i];
+                }
+                if (q == 2)
+                {
+                    a3 += date[i];
+                }
+            }
+            return a3 + "-" + a2 + "-" + a1;
+        }
+
         /// <summary>
         /// Select image
         /// </summary>
@@ -30,24 +63,24 @@ namespace CurrencyConverter
         /// <param name="tab2">Tab image</param>
         public static void SelectImage( float[] tab, ref string[] tab2)
         {
-            int tmp = (int)(tab[29]* 10000);
+            int tmp = (int)(Helper.RoundFloat(tab[29],4)* 10000);
             for (int i = 29; i >= 0; i--)
             {
-                int tmp1 = (int)(tab[i] * 10000);
+                int tmp1 = (int)(Helper.RoundFloat(tab[i],4) * 10000);
                 if (tmp1 == tmp)
                 {
                     tab2[i] = "/Image/image2.png";
-                    tmp = (int)(tab[i] * 10000);
+                    tmp = (int)(Helper.RoundFloat(tab[i], 4) * 10000);
                 }
                 if (tmp1 > tmp)
                 {
                     tab2[i] = "/Image/image1.png";
-                    tmp = (int)(tab[i] * 10000);
+                    tmp = (int)(Helper.RoundFloat(tab[i], 4) * 10000);
                 }
                 if (tmp1 < tmp)
                 {
                     tab2[i] = "/Image/image3.png";
-                    tmp = (int)(tab[i] * 10000);
+                    tmp = (int)(Helper.RoundFloat(tab[i], 4) * 10000);
                 }
             }
         }

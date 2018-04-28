@@ -104,16 +104,16 @@ namespace CurrencyConverter
         #endregion
 
         #region get statistic currency from last 30 day 
-        public static void GetCourseStatistic(ref float[] tab, string CurrencyName)
+        public static void GetCourseStatistic(ref float[] tab, string CurrencyName, string[] date)
         {
             var wc = new WebClient();
-            var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/rates/a/" + CurrencyName.ToLower() + "/last/30/?format=xml");
+            var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/rates/a/"+CurrencyName.ToLower()+"/last/30/?format=xml");
             XmlDocument xd = new XmlDocument();
             xd.LoadXml(course);
-            Course.GetCourseStatisticLooop(ref tab, xd);
+            Course.GetCourseStatisticLooop(ref tab, xd, date);
         }
         
-        private static void GetCourseStatisticLooop(ref float[] tab, XmlDocument xml)
+        private static void GetCourseStatisticLooop(ref float[] tab, XmlDocument xml, string[] date)
         {
             int i = 29;
             foreach (XmlNode item in xml.GetElementsByTagName("Rate"))
@@ -121,10 +121,15 @@ namespace CurrencyConverter
                 if (item.NodeType == XmlNodeType.Element)
                 {
                     XmlElement pp = (XmlElement)item;
-                    tab[i] = Helper.StringToFloat(Convert.ToString(pp.GetElementsByTagName("Mid")[0].InnerText));
-                    i--;
+                    XmlElement w = (XmlElement)pp.GetElementsByTagName("EffectiveDate")[0];
+                    if (w.InnerText == date[i])
+                    {
+                       tab[i] = Helper.StringToFloat(Convert.ToString(pp.GetElementsByTagName("Mid")[0].InnerText));
+                        i--; 
+                    }
                 }
             }
+            
         }
         #endregion
 

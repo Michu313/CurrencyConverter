@@ -61,6 +61,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Currency.cs" />
+    <Compile Include="DetailedStatistic.cs" />
     <Compile Include="StatisticCurrency.xaml.cs">
       <DependentUpon>StatisticCurrency.xaml</DependentUpon>
     </Compile>
