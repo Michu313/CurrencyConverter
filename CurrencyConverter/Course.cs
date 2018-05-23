@@ -104,7 +104,7 @@ namespace CurrencyConverter
         #endregion
 
         #region get statistic currency from last 30 day 
-        public static void GetCourseStatistic(ref float[] tab, string CurrencyName, string[] date)
+        public static void GetCourseStatistic(ref double[] tab, string CurrencyName, string[] date)
         {
             var wc = new WebClient();
             var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/rates/a/"+CurrencyName.ToLower()+"/last/30/?format=xml");
@@ -113,7 +113,7 @@ namespace CurrencyConverter
             Course.GetCourseStatisticLooop(ref tab, xd, date);
         }
         
-        private static void GetCourseStatisticLooop(ref float[] tab, XmlDocument xml, string[] date)
+        private static void GetCourseStatisticLooop(ref double[] tab, XmlDocument xml, string[] date)
         {
             int i = 29;
             foreach (XmlNode item in xml.GetElementsByTagName("Rate"))
@@ -124,7 +124,7 @@ namespace CurrencyConverter
                     XmlElement w = (XmlElement)pp.GetElementsByTagName("EffectiveDate")[0];
                     if (w.InnerText == date[i])
                     {
-                       tab[i] = Helper.StringToFloat(Convert.ToString(pp.GetElementsByTagName("Mid")[0].InnerText));
+                       tab[i] = Convert.ToDouble(Helper.StringToFloat(Convert.ToString(pp.GetElementsByTagName("Mid")[0].InnerText)));
                         i--; 
                     }
                 }

@@ -61,26 +61,26 @@ namespace CurrencyConverter
         /// </summary>
         /// <param name="tab">Tab currency</param>
         /// <param name="tab2">Tab image</param>
-        public static void SelectImage( float[] tab, ref string[] tab2)
+        public static void SelectImage(double[] tab, ref string[] tab2)
         {
-            int tmp = (int)(Helper.RoundFloat(tab[29],4)* 10000);
+            double tmp = tab[29];
             for (int i = 29; i >= 0; i--)
             {
-                int tmp1 = (int)(Helper.RoundFloat(tab[i],4) * 10000);
+                double tmp1 =tab[i];
                 if (tmp1 == tmp)
                 {
                     tab2[i] = "/Image/image2.png";
-                    tmp = (int)(Helper.RoundFloat(tab[i], 4) * 10000);
+                    tmp = tab[i];
                 }
                 if (tmp1 > tmp)
                 {
                     tab2[i] = "/Image/image1.png";
-                    tmp = (int)(Helper.RoundFloat(tab[i], 4) * 10000);
+                    tmp = tab[i];
                 }
                 if (tmp1 < tmp)
                 {
                     tab2[i] = "/Image/image3.png";
-                    tmp = (int)(Helper.RoundFloat(tab[i], 4) * 10000);
+                    tmp = tab[i];
                 }
             }
         }

@@ -21,10 +21,10 @@ namespace CurrencyConverter
     {
         List<Currency> CurrenclyList = new List<Currency>();
         string[] tabDate = new string[30];
-        float[] Currency1 = new float[30];
-        float[] Currency2 = new float[30];
-        float[] ChangeTab1 = new float[30];
-        float[] ChangeTab2 = new float[30];
+        double[] Currency1 = new double[30];
+        double[] Currency2 = new double[30];
+        double[] ChangeTab1 = new double[30];
+        double[] ChangeTab2 = new double[30];
         string[] Image1 = new string[30];
         string[] Image2 = new string[30];
         
@@ -37,6 +37,7 @@ namespace CurrencyConverter
             comboBoxCurrency1.SelectedIndex = 0;
             comboBoxCurrency2.SelectedIndex = 1;
             InitializeList();
+            InitializeStatisticGroupBox();
         }
 
         private void BackButton(object sender, RoutedEventArgs e)
@@ -44,6 +45,12 @@ namespace CurrencyConverter
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
+        }
+
+        public void InitializeStatisticGroupBox()
+        {
+            groupBoxStatistic1.Header = "Statystyka " + comboBoxCurrency1.Text.ToString()+":";
+            groupBoxStatistic2.Header = "Statystyka " + comboBoxCurrency2.Text.ToString()+":";
         }
 
         public void InitializeList()
@@ -62,13 +69,14 @@ namespace CurrencyConverter
 
             for (int i = 0; i < 30; i++)
             {
-                listView.Items.Add(new Currency(Image1[i], ChangeTab1[i], Helper.RoundFloat(Currency1[i],4), tabDate[i],Helper.RoundFloat(Currency2[i],4), ChangeTab2[i], Image2[i]));
+                listView.Items.Add(new Currency(Image1[i], Math.Round(ChangeTab1[i],4), Math.Round(Currency1[i],4), tabDate[i], Math.Round(Currency2[i],4), Math.Round(ChangeTab2[i], 4), Image2[i]));
             }
         }
 
         private void RefreshList(object sender, RoutedEventArgs e)
         {
             InitializeList();
+            InitializeStatisticGroupBox();
         }
     }
 }

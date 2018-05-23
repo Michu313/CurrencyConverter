@@ -55,22 +55,27 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="2" Orientation="Horizontal" >
-            <Button x:Name="backButton" Content="Wstecz" HorizontalAlignment="Center" Width="75" Click="BackButton" Margin="15,5,5,5" />
+            <Button x:Name="backButton" Content="Wstecz" HorizontalAlignment="Center" Width="75" Height="20" Click="BackButton" Margin="15,5,5,5" />
         </StackPanel>
-        <Button x:Name="button" Content="Odśwież" Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="RefreshList"/>
-        <StackPanel Grid.Column="0" Grid.Row="1" >
-            <TextBlock x:Name="textBlockCurrency11" TextWrapping="Wrap" Text="Największa wartość:" Margin="5,50,5,5"/>
+        <Button x:Name="button" Content="Odśwież" Grid.Column="1" HorizontalAlignment="Left" Margin="10,5,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Height="20"  Click="RefreshList"/>
+        <GroupBox x:Name="groupBoxStatistic1" Header="GroupBox"  Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Margin="5,0">
+            <StackPanel  >
+            <TextBlock x:Name="textBlockCurrency11" TextWrapping="Wrap" Text="Największa wartość:" Margin="5,10,5,5"/>
             <TextBlock x:Name="textBlockCurrency12" TextWrapping="Wrap" Text="Największy wzrost:" Margin="5"/>
             <TextBlock x:Name="textBlockCurrency13" TextWrapping="Wrap" Text="Najmniejsza wartość:" Margin="5"/>
             <TextBlock x:Name="textBlockCurrency14" TextWrapping="Wrap" Text="Największy spadek:" Margin="5"/>
             <TextBlock x:Name="textBlockCurrency15" TextWrapping="Wrap" Text="Średnia wartość" Margin="5"/>
-        </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" >
-            <TextBlock x:Name="textBlockCurrency21" TextWrapping="Wrap" Text="Największa wartość:" Margin="5,50,5,5"/>
-            <TextBlock x:Name="textBlockCurrency22" TextWrapping="Wrap" Text="Największy wzrost:" Margin="5"/>
-            <TextBlock x:Name="textBlockCurrency23" TextWrapping="Wrap" Text="Najmniejsza wartość:" Margin="5"/>
-            <TextBlock x:Name="textBlockCurrency24" TextWrapping="Wrap" Text="Największy spadek:" Margin="5"/>
-            <TextBlock x:Name="textBlockCurrency25" TextWrapping="Wrap" Text="Średnia wartość:" Margin="5"/>
-        </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <GroupBox x:Name="groupBoxStatistic2" Header="GroupBox" Grid.Column="2" Grid.Row="1"  VerticalAlignment="Top" Margin="5,0"  >
+            <StackPanel Margin="0,0,-2,0">
+                <TextBlock x:Name="textBlockCurrency21" TextWrapping="Wrap" Text="Największa wartość:" Margin="5,10,5,5"/>
+                <TextBlock x:Name="textBlockCurrency22" TextWrapping="Wrap" Text="Największy wzrost:" Margin="5"/>
+                <TextBlock x:Name="textBlockCurrency23" TextWrapping="Wrap" Text="Najmniejsza wartość:" Margin="5"/>
+                <TextBlock x:Name="textBlockCurrency24" TextWrapping="Wrap" Text="Największy spadek:" Margin="5"/>
+                <TextBlock x:Name="textBlockCurrency25" TextWrapping="Wrap" Text="Średnia wartość:" Margin="5"/>
+            </StackPanel>
+        </GroupBox>
+
     </Grid>
 </Window>

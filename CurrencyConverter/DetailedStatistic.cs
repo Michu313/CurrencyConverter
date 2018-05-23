@@ -9,14 +9,14 @@ namespace CurrencyConverter
 {
     class DetailedStatistic
     {
-        public static void ChangeCurrencyPrice(float[] tab, ref float[] tab2)
+        public static void ChangeCurrencyPrice(double[] tab, ref double[] tab2)
         {
             bool a = false;
             for (int i = tab.Length-1; i >= 0; i--)
             {
                 if(a==true)
                 {
-                    tab2[i] = Helper.RoundFloat(tab[i] - tab[i + 1], 4);
+                    tab2[i] = Convert.ToDouble(tab[i]) - Convert.ToDouble(tab[i + 1]);
                     
                 }
                 if (a==false)
@@ -27,38 +27,39 @@ namespace CurrencyConverter
             }
         }
 
-        public static float GratestValue(float[] tab)
+        public static double GratestValue(double[] tab)
         {
-            float[] tab1 = new float[tab.Length];
+            double[] tab1 = new double[tab.Length];
             for (int i = 0; i < tab.Length; i++)
             {
                 tab1[i] = tab[i];
             }
             Array.Sort(tab1);
-            return tab1[29];
+            return Math.Round(tab1[29],4);
         }
 
-        public static float SmallestValue(float[] tab)
+        public static double SmallestValue(double[] tab)
         {
-            float[] tab1 = new float[tab.Length];
+            double[] tab1 = new double[tab.Length];
             for (int i = 0; i < tab.Length; i++)
             {
                 tab1[i] = tab[i];
             }
             Array.Sort(tab1);
-            return tab1[0];
+            return Math.Round(tab1[0],4);
         }
 
-        public static float AverageValue(float[] tab)
+        public static double AverageValue(double[] tab)
         {
-            float a = 0; 
+            double a = 0; 
             for (int i = 0; i < tab.Length; i++)
             {
                 a = a + tab[i];
             }
-            return Helper.RoundFloat( a / tab.Length,4);
+            return Math.Round( a / tab.Length,4);
         }
-        public static void FillTextBlock(ref TextBlock textBlock1, ref TextBlock textBlock2, ref TextBlock textBlock3, ref TextBlock textBlock4, ref TextBlock textBlock5, float[] Currency, float[] ChangeTab)
+
+        public static void FillTextBlock(ref TextBlock textBlock1, ref TextBlock textBlock2, ref TextBlock textBlock3, ref TextBlock textBlock4, ref TextBlock textBlock5, double[] Currency, double[] ChangeTab)
         {
             textBlock1.Text = "Największa wartość: " + DetailedStatistic.GratestValue(Currency) + "zł";
             textBlock2.Text = "Największy wzrost: " + DetailedStatistic.GratestValue(ChangeTab) + "zł";

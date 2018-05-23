@@ -9,14 +9,14 @@ namespace CurrencyConverter
     public class Currency
     {
         public string CourseImage1 { get; private set; }
-        public float Variable1 { get; private set; }
-        public float Value1 { get; private set; }
+        public double Variable1 { get; private set; }
+        public double Value1 { get; private set; }
         public string Data { get; private set; }
-        public float Value2 { get; private set; }
-        public float Variable2 { get; private set; }
+        public double Value2 { get; private set; }
+        public double Variable2 { get; private set; }
         public string CourseImage2 { get; private set; }
 
-        public Currency(string courseImage1, float variable1, float value1, string date, float value2, float variable2, string courseImage2)
+        public Currency(string courseImage1, double variable1, double value1, string date, double value2, double variable2, string courseImage2)
         {
             this.CourseImage1 = courseImage1;
             this.Variable1 = variable1;
