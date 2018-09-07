@@ -60,8 +60,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Currency.cs" />
+    <Compile Include="CourseOffline.cs" />
+    <Compile Include="Model\Currency.cs" />
+    <Compile Include="Model\CurrencyXml.cs" />
     <Compile Include="DetailedStatistic.cs" />
+    <Compile Include="CreateXml.cs" />
     <Compile Include="StatisticCurrency.xaml.cs">
       <DependentUpon>StatisticCurrency.xaml</DependentUpon>
     </Compile>
@@ -115,6 +118,11 @@
     <Resource Include="Image\image1.png" />
     <Resource Include="Image\image2.png" />
     <Resource Include="Image\image3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="OfflineCourseCurrent\OfflineMode.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

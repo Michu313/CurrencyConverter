@@ -110,7 +110,7 @@ namespace CurrencyConverter
             var course = wc.DownloadString("http://api.nbp.pl/api/exchangerates/rates/a/"+CurrencyName.ToLower()+"/last/30/?format=xml");
             XmlDocument xd = new XmlDocument();
             xd.LoadXml(course);
-            Course.GetCourseStatisticLooop(ref tab, xd, date);
+            GetCourseStatisticLooop(ref tab, xd, date);
         }
         
         private static void GetCourseStatisticLooop(ref double[] tab, XmlDocument xml, string[] date)

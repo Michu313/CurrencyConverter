@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Xml;
 
 namespace CurrencyConverter
 {
@@ -85,9 +88,18 @@ namespace CurrencyConverter
             }
         }
 
-        public static void AddItemToComboBoxList(ref ComboBox comboBox, bool addPln)
+        public static void AddItemToComboBoxList(ref ComboBox comboBox, bool addPln, bool mode)
         {
-            string[] tab = Course.GetAllNameCurrent();
+            string[] tab;
+            if (mode==true)
+            {
+                tab = Course.GetAllNameCurrent();
+            }
+            else
+            {
+                tab = CourseOffline.GetAllNameCurrentOffline();
+            }
+            
             if (addPln==true)
             {
             comboBox.Items.Add("PLN");
@@ -97,5 +109,47 @@ namespace CurrencyConverter
                 comboBox.Items.Add(tab[i]);
             }
         }
+
+        public static bool CheckTextBox(string a)
+        {
+            Regex regex = new Regex("^(-?)(0|([1-9][0-9]*))(\\.[0-9]+)?$");
+            if (regex.IsMatch(a)==true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool CheckConnectInternet()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                {
+                    using (var stream = client.OpenRead("http://api.nbp.pl"))
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch (Exception e) 
+            {
+                return false;
+            }
+        }
+
+        public static string ReversDate()
+        {
+            string tmp = CourseOffline.GetDataCurrencyOffline();
+            string tmp1 = tmp[0] +""+ tmp[1]+""+tmp[2]+""+tmp[3];
+            string tmp2 = tmp[5] + "" + tmp[6];
+            string tmp3 = tmp[8] + "" + tmp[9];
+            return tmp3 + "-" + tmp2 + "-" + tmp1;
+        }
+
     }
+    
 }

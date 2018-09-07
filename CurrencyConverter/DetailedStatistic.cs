@@ -7,7 +7,7 @@ using System.Windows.Controls;
 
 namespace CurrencyConverter
 {
-    class DetailedStatistic
+    class Statistic
     {
         public static void ChangeCurrencyPrice(double[] tab, ref double[] tab2)
         {
@@ -61,11 +61,11 @@ namespace CurrencyConverter
 
         public static void FillTextBlock(ref TextBlock textBlock1, ref TextBlock textBlock2, ref TextBlock textBlock3, ref TextBlock textBlock4, ref TextBlock textBlock5, double[] Currency, double[] ChangeTab)
         {
-            textBlock1.Text = "Największa wartość: " + DetailedStatistic.GratestValue(Currency) + "zł";
-            textBlock2.Text = "Największy wzrost: " + DetailedStatistic.GratestValue(ChangeTab) + "zł";
-            textBlock3.Text = "Najmniejsza wartość: " + DetailedStatistic.SmallestValue(Currency) + "zł";
-            textBlock4.Text = "Największy spadek: " + DetailedStatistic.SmallestValue(ChangeTab) + "zł";
-            textBlock5.Text = "Srednia cena: " + DetailedStatistic.AverageValue(Currency) + "zł";
+            textBlock1.Text = "Największa wartość: " + Statistic.GratestValue(Currency) + "zł";
+            textBlock2.Text = "Największy wzrost: " + Statistic.GratestValue(ChangeTab) + "zł";
+            textBlock3.Text = "Najmniejsza wartość: " + Statistic.SmallestValue(Currency) + "zł";
+            textBlock4.Text = "Największy spadek: " + Statistic.SmallestValue(ChangeTab) + "zł";
+            textBlock5.Text = "Srednia cena: " + Statistic.AverageValue(Currency) + "zł";
         }
     }
 }

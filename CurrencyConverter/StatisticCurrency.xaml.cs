@@ -32,8 +32,8 @@ namespace CurrencyConverter
         public StatisticCurrency()
         {
             InitializeComponent();            
-            Helper.AddItemToComboBoxList(ref comboBoxCurrency1 ,false);
-            Helper.AddItemToComboBoxList(ref comboBoxCurrency2, false);
+            Helper.AddItemToComboBoxList(ref comboBoxCurrency1 ,false, true);
+            Helper.AddItemToComboBoxList(ref comboBoxCurrency2, false, true);
             comboBoxCurrency1.SelectedIndex = 0;
             comboBoxCurrency2.SelectedIndex = 1;
             InitializeList();
@@ -62,10 +62,10 @@ namespace CurrencyConverter
             Course.GetCourseStatistic(ref Currency2, comboBoxCurrency2.Text.ToString(), tabDate);
             Helper.SelectImage(Currency1, ref Image1);
             Helper.SelectImage(Currency2, ref Image2);
-            DetailedStatistic.ChangeCurrencyPrice(Currency1, ref ChangeTab1);
-            DetailedStatistic.ChangeCurrencyPrice(Currency2, ref ChangeTab2);
-            DetailedStatistic.FillTextBlock(ref textBlockCurrency11, ref textBlockCurrency12, ref textBlockCurrency13, ref textBlockCurrency14, ref textBlockCurrency15, Currency1, ChangeTab1);
-            DetailedStatistic.FillTextBlock(ref textBlockCurrency21, ref textBlockCurrency22, ref textBlockCurrency23, ref textBlockCurrency24, ref textBlockCurrency25, Currency2, ChangeTab2);
+            Statistic.ChangeCurrencyPrice(Currency1, ref ChangeTab1);
+            Statistic.ChangeCurrencyPrice(Currency2, ref ChangeTab2);
+            Statistic.FillTextBlock(ref textBlockCurrency11, ref textBlockCurrency12, ref textBlockCurrency13, ref textBlockCurrency14, ref textBlockCurrency15, Currency1, ChangeTab1);
+            Statistic.FillTextBlock(ref textBlockCurrency21, ref textBlockCurrency22, ref textBlockCurrency23, ref textBlockCurrency24, ref textBlockCurrency25, Currency2, ChangeTab2);
 
             for (int i = 0; i < 30; i++)
             {
